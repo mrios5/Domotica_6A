@@ -2,7 +2,7 @@
 #include <Servo.h> 
 
 //Definicion de lo que se necesita para trabajar con el servomotor
-#define servo_pin 17
+#define servo_pin 4
 Servo myservo;
 int angle = 0;
 

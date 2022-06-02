@@ -5,10 +5,10 @@
 
 class Tareas {
   public:
-    unsigned long task_2s = 0,
-                  task_5s = 0,
-                  task_10s = 0,
-                  task_20s = 0,
+    unsigned long task_2s = 0, //Sensores
+                  task_5s = 0, //Actuadores
+                  task_10s = 0, //mqtt
+                  task_20s = 0, //datalogger
                   currentMillis = 0;
   
   public:
@@ -24,7 +24,7 @@ void Tareas::_2s ( void ){
     
       sensor.rfid();
       sensor.luz();
-      sensor.temperatura();    
+      sensor.temperatura();     
       task_2s = currentMillis;
     }
   }

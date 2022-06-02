@@ -3,8 +3,8 @@
 #include <MFRC522.h>
 
 //Definiciones para usar RFID
-#define SS_PIN 5
-#define RST_PIN 22
+#define SS_PIN 25
+#define RST_PIN 26
 MFRC522 mfrc522(SS_PIN, RST_PIN);   //Creacion de la instancia MFRC522.
 
 //Librerias para usar el sensor BH1750 sensor de iluminucida
@@ -13,7 +13,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);   //Creacion de la instancia MFRC522.
 
 //Definiciones para usar el sensor BH1750
 BH1750 sensors;    // crea objeto con nombre sensor
-#define LED 4   // reemplaza ocurrencia de LED por 2
+#define LED 13   // reemplaza ocurrencia de LED por 2
 #define UMBRAL 30 // reemplaza ocurrencia de UMBRAL por 30
 
 //Librerias para usar el sensor DHT11 (temperatura)
