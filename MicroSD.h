@@ -4,12 +4,14 @@ class MicroSD {
     String filename = "", json_string = "";
 
   public:
-    void MicroSD_init ( void );
-    void FileID ( void );
-    void JSON ( void );
-    void JSON_SaveFile ( DynamicJsonDocument * );\
+    void MicroSD_init ( void ); //Inicia el MicroSD
+    void FileID ( void ); //Para poner un ID al archivo como un identificador
+    void JSON ( void ); //Acomodar en JSON
+    void JSON_SaveFile ( DynamicJsonDocument * ); //Para guardar el JSON
 };
 
+
+//Inicia el MicroSD
 void MicroSD::MicroSD_init ( void ){
 
     while ( ! SD.begin ( MICROSD_PIN ) ) {
@@ -21,7 +23,8 @@ void MicroSD::MicroSD_init ( void ){
     
   
   }
-  
+
+//Para poner un ID al archivo como un identificador
 void MicroSD::FileID ( void ) {
   RTC.get_time();
   filename = '/';
@@ -38,22 +41,24 @@ void MicroSD::FileID ( void ) {
   filename += EXTENSION;
   
   }
-  
-void MicroSD::JSON ( void ) {
 
+//Acomodar en JSON
+void MicroSD::JSON ( void ) {
+//se mandan a llamar los datos que se van a guardar
   DynamicJsonDocument obj(1024);
     obj["Temperatura"] = 35;
     RTC.format_date( );
     RTC.format_time( );
     obj["fecha"] = RTC.fecha.c_str();
     obj["tiempo"] = RTC.tiempo.c_str();
-    JSON_SaveFile ( &obj );
-    
+    JSON_SaveFile ( &obj );  
   }
-  
+
+//para guardar en JSON
 void MicroSD::JSON_SaveFile ( DynamicJsonDocument *obj ) {
   FileID();
   json_string = "";
+  //si el archivo no existe, el simple OPEN crearia el archivo por defecto
   MicroSD_File = SD.open ( filename, FILE_APPEND );
   if( MicroSD_File ){
       serializeJson(*obj, json_string);

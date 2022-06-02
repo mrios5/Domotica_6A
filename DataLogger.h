@@ -1,11 +1,11 @@
 #define MICROSD_PIN 5
 #define EXTENSION ".json"
-#include <ArduinoJson.h>
-#include <Wire.h>
-#include "RTClib.h"
+#include <ArduinoJson.h> //libreria para el JSON
+#include <Wire.h> //
+#include "RTClib.h" //Libreria para el reloj
   RTC_DS1307 rtc;
 
-#include <SPI.h>
+#include <SPI.h> //protocolo spi
 #include <SD.h>
 File MicroSD_File;
 #include "RTC.h"

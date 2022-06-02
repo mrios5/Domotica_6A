@@ -20,17 +20,17 @@ class Actuadores {
   public:
     void servo_setup (void); //setup del servomotor
     void servo (void); //acciones del servomotor
-    void pantallalcd_setup (void); //setup del servomotor
-    void pantallalcd (void); //acciones del servomotor
+    void pantallalcd_setup (void); //setup del la pantalla LCD
+    void pantallalcd (void); //Funcion que muestra las cosas setear
   };
 
- void Actuadores::servo_setup ( void ){
+ void Actuadores::servo_setup ( void ){ //Inciar el Servo
   
   myservo.attach(servo_pin);
   
   }
   
- void Actuadores::servo ( void ){
+ void Actuadores::servo ( void ){ //Acciones del servo
 
   // abrir puerta
   for(angle = 0; angle < 95; angle += 1)
@@ -48,14 +48,14 @@ class Actuadores {
   
   }
 
-  void Actuadores::pantallalcd_setup ( void ){
+  void Actuadores::pantallalcd_setup ( void ){ //Inicia la pantalla LCD
     // initialize LCD
     lcd.begin();
     // turn on LCD backlight                      
     lcd.backlight();
   }
   
- void Actuadores::pantallalcd ( void ){
+ void Actuadores::pantallalcd ( void ){ //Funcion que mostrara si hay fuga de gas o no la hay 
   
   // read the input on analog pin 0:
   int sensorValue = analogRead(36);

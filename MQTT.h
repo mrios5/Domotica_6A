@@ -4,20 +4,20 @@
 #include <PubSubClient.h>
   PubSubClient MQTT_ESP32 (ESP32_WIFI);
  
-const char* HOTSPOT_WIFI= "manu";
-const char* HOTSPOT_PWD = "manuelrios";
-const char* MQTT_SERVER = "test.mosquitto.org";
-#define MQTT_PORT 1883
-#define TOPIC "/6A/HOUSE/GARDEN"
+const char* HOTSPOT_WIFI= "manu"; //nombre del hotspot
+const char* HOTSPOT_PWD = "manuelrios"; //la password para el hotspot
+const char* MQTT_SERVER = "test.mosquitto.org"; //Broker al que nos conectamos
+#define MQTT_PORT 1883 //puerto al que nos conectaremos
+#define TOPIC "/6A/HOUSE/GARDEN" //topic al que nos vamos a suscribir
 
 class MQTT {
 
   public:
   public:
-    void subscribe_MQTT ( void );
-    void publish_MQTT ( void );
-    void reconnect_MQTT ( void );
-    void setup_Wifi ( void );
+    void subscribe_MQTT ( void ); //funcion para suscribirse al MQTT
+    void publish_MQTT ( void ); //Publicar en MQTT
+    void reconnect_MQTT ( void ); //Reconectar en MQTT
+    void setup_Wifi ( void ); //Iniciar el WIFI
     void set_MQTT_server ( void );
   };
   
@@ -28,13 +28,13 @@ void MQTT::subscribe_MQTT ( void ){
   
   }
 
+//Esta funcion publica en MQTT
 void MQTT::publish_MQTT ( void ){
-
-    String hola = "La verdad es dura, pero...";
     Serial.println("Mensaje enviado correctamente");
     MQTT_ESP32.publish( TOPIC, MSD.json_string.c_str() );
   }
 
+//En caso de que se desconecte funcion parfa reconectar el MQTT
 void MQTT::reconnect_MQTT ( void ){
   
   if (!MQTT_ESP32.connected()) {
@@ -63,6 +63,7 @@ void MQTT::reconnect_MQTT ( void ){
   
   }
 
+//funcion para setear el WIFI, que se conecte a wifi
 void MQTT::setup_Wifi ( void ){
 
   delay ( 10 );
@@ -75,5 +76,6 @@ void MQTT::setup_Wifi ( void ){
     
   }
     Serial.println ( "WiFi Configurado! :D, Ip: ");
+    //Saca y muestra la IP local a la que se conecto
     Serial.println  (WiFi.localIP());
   }

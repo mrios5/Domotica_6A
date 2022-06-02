@@ -45,8 +45,8 @@ class Sensores {
   
   }
 
-  //ejecucion de RFID
- void Sensores::rfid ( void ){
+//ejecucion de RFID
+void Sensores::rfid ( void ){
 
   // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent()) 
@@ -134,7 +134,7 @@ class Sensores {
   Serial.println(" *C ");  
   }
 
- void Sensores::setup_temperatura ( void ){
+ void Sensores::setup_temperatura ( void ){ //Iniciar el sensor de la temperatura
   dht.begin();
   pinMode(VENTI, OUTPUT);  //definir pin como salida
   digitalWrite(VENTI, LOW); // se manda seal a ventilador en bajo  

@@ -1,22 +1,21 @@
-//este es el bueno
-#include "DataLogger.h"
-#include "skeleton.h"
+#include "DataLogger.h" //libreria madre para guardar y mandar datos tanto a MQTT como a JSON
+#include "skeleton.h" //libreria madre de los sensores, actuadores y tareas
   
 void setup() {
   Serial.begin(115200);
 
   //DataLogger Guarda la informacion
-  MSD.MicroSD_init();//
-  RTC.RTC_init(); //
+  MSD.MicroSD_init();//Inicia SD
+  RTC.RTC_init(); //Inicia el reloj
 
-  //MQTT 
+  //se conecta a MQTT 
   mqtt.set_MQTT_server();
   mqtt.setup_Wifi();
 
-  //RFID
+  //Inicializa el RFID 
   sensor.setup_rfid();
 
-  //LCD y MQ7
+  //Para iniciar el LDC y el MQ7
   actuators.pantallalcd_setup();
 
   //BH1750 y LED
@@ -28,13 +27,13 @@ void setup() {
 
 void loop() {
 
-  //Milis
+  //Funciones para que se ejecuten las tareas cada cierto tiempo
   tasks.currentMillis = millis( );
-  tasks._20s ();
-  tasks._10s ();
-  tasks._5s ();
-  tasks._2s ();
+  tasks._20s (); //para el datalogger
+  tasks._10s (); //para mandar a mqtt
+  tasks._5s (); //para actuadores
+  tasks._2s (); //para sensores
 
-  //Reconect MQTT
+  //Funcion para reconectar a MQTT en caso de se desconecte 
   mqtt.reconnect_MQTT ();
 }

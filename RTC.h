@@ -6,12 +6,13 @@ class DS1307_RTC {
     String fecha = "", tiempo = "";
 
   public:
-    void RTC_init ( void );
-    void get_time ( void );
-    void format_date ( void );
-    void format_time ( void );
+    void RTC_init ( void ); //Iniciar el reloj
+    void get_time ( void ); //Funcion para tomar el tiempo actual
+    void format_date ( void ); //Funcion que da formato a la fecha
+    void format_time ( void ); //Funcion que da formato a la hora
 };
 
+//Iniciar el reloj
 void DS1307_RTC::RTC_init ( void ){
 
   while ( ! rtc.begin ( ) ) {
@@ -23,6 +24,7 @@ void DS1307_RTC::RTC_init ( void ){
   Serial.println(F("Todo piola con el RTC"));
   
   }
+//Funcion para tomar el tiempo actual
 void DS1307_RTC::get_time ( void ){
     DateTime now = rtc.now();
     segundo = now.second ( );
@@ -33,6 +35,8 @@ void DS1307_RTC::get_time ( void ){
     ano = now.year ( );
     
   }
+
+//Funcion que da formato a la fecha
 void DS1307_RTC::format_date ( void ){
   fecha = "";
   if ( dia < 10) fecha += '0';
@@ -43,6 +47,8 @@ void DS1307_RTC::format_date ( void ){
   fecha += '/';
   fecha += ano;
   }
+
+//Funcion que da formato a la hora
 void DS1307_RTC::format_time ( void ){
   tiempo = "";
   if ( hora < 10) tiempo += '0';
