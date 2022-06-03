@@ -7,8 +7,8 @@ class Tareas {
   public:
     unsigned long task_2s = 0, //Sensores
                   task_5s = 0, //Actuadores
-                  task_10s = 0, //mqtt
-                  task_20s = 0, //datalogger
+                  task_10s = 0, //datalogger
+                  task_20s = 0, //mqtt
                   currentMillis = 0;
   
   public:
